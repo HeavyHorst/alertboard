@@ -2,7 +2,9 @@
 #alertboard
 
 Alertboard is a very simple Alert-Dashboard with zero dependencies.
+
 It provides a simple RESTful-API to write and read alerts to/from the system.
+
 It's compatiple with [kapacitor](https://github.com/influxdata/kapacitor "kapacitor").
 
 ##API
@@ -72,6 +74,7 @@ curl -v -H "Content-Type: application/json" -X POST -d '{"id":"abc123!?$*&()-=@~
 ```
 
 You can see the new location of the alert:
+
 The id is simply base64url encoded.
 
  - Location: /api/alert/YWJjMTIzIT8kKiYoKS09QH4=
