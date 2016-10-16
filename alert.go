@@ -6,7 +6,7 @@ import (
 	"github.com/influxdata/influxdb/influxql"
 )
 
-type AlertData struct {
+type alertData struct {
 	ID       string          `json:"id"`
 	Message  string          `json:"message"`
 	Details  string          `json:"details"`

@@ -39,7 +39,7 @@ func alertHandler(db store) func(w http.ResponseWriter, r *http.Request) {
 
 		case "POST":
 			decoder := json.NewDecoder(r.Body)
-			var alert AlertData
+			var alert alertData
 			err := decoder.Decode(&alert)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)

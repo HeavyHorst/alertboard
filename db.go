@@ -10,7 +10,7 @@ import (
 )
 
 type store interface {
-	putAlert(a AlertData) error
+	putAlert(a alertData) error
 	getAlert(id string) []byte
 	deleteAlert(id string) error
 	getAlertsByPrefix(prefix string) ([]byte, error)
@@ -39,7 +39,7 @@ func newBoltStore() (*boltStore, error) {
 	return b, err
 }
 
-func (b *boltStore) putAlert(a AlertData) error {
+func (b *boltStore) putAlert(a alertData) error {
 	if a.Time.IsZero() {
 		a.Time = time.Now()
 	}
@@ -80,8 +80,8 @@ func (b *boltStore) deleteAlert(id string) error {
 }
 
 func (b *boltStore) getAlertsByPrefix(prefix string) ([]byte, error) {
-	alerts := make([]AlertData, 0, 0)
-	var alert AlertData
+	alerts := make([]alertData, 0, 0)
+	var alert alertData
 
 	err := b.db.View(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte("alerts"))
