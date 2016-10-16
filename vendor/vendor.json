@@ -1,0 +1,73 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "iUzC0HRLcL0Iv8FzWzVySRdiCVA=",
+			"path": "github.com/boltdb/bolt",
+			"revision": "074dffcc83e9f421e261526d297cd93f22a34080",
+			"revisionTime": "2016-10-08T15:24:23Z"
+		},
+		{
+			"checksumSHA1": "2eIRbxeMUEF1ZnOanJhXmFR7pFs=",
+			"path": "github.com/gogo/protobuf/proto",
+			"revision": "99cb9b23110011cc45571c901ecae6f6f5e65cd3",
+			"revisionTime": "2016-10-05T20:17:23Z"
+		},
+		{
+			"checksumSHA1": "6/9VW/AyJyjRXLu+nbhqGYvOO2k=",
+			"path": "github.com/gorilla/handlers",
+			"revision": "a5775781a543af3c6b9f5baf10995e4d14168950",
+			"revisionTime": "2016-08-16T18:47:29Z"
+		},
+		{
+			"checksumSHA1": "urMd7A9QPAJYY0GZJL9qBhlUmD8=",
+			"path": "github.com/gorilla/mux",
+			"revision": "757bef944d0f21880861c2dd9c871ca543023cba",
+			"revisionTime": "2016-09-20T23:08:13Z"
+		},
+		{
+			"checksumSHA1": "aA4n8JoQAzGDtGIlKmiHqL36ywo=",
+			"path": "github.com/influxdata/influxdb/influxql",
+			"revision": "31169512f436b7da8992530ed1e80d50c788a642",
+			"revisionTime": "2016-10-10T19:09:17Z"
+		},
+		{
+			"checksumSHA1": "rLvVAkzHkgsa+Ag+6S+5WID4IDg=",
+			"path": "github.com/influxdata/influxdb/influxql/internal",
+			"revision": "31169512f436b7da8992530ed1e80d50c788a642",
+			"revisionTime": "2016-10-10T19:09:17Z"
+		},
+		{
+			"checksumSHA1": "Jc+3VOKI/Ijh2mQ+TgAlFxSHq3c=",
+			"path": "github.com/influxdata/influxdb/influxql/neldermead",
+			"revision": "31169512f436b7da8992530ed1e80d50c788a642",
+			"revisionTime": "2016-10-10T19:09:17Z"
+		},
+		{
+			"checksumSHA1": "F0QWwfaZMoHZ385+EM+82Cg8JPg=",
+			"path": "github.com/influxdata/influxdb/models",
+			"revision": "31169512f436b7da8992530ed1e80d50c788a642",
+			"revisionTime": "2016-10-10T19:09:17Z"
+		},
+		{
+			"checksumSHA1": "k4DPMyVAqsaoTQX40tP2fb4hDMs=",
+			"path": "github.com/influxdata/influxdb/pkg/escape",
+			"revision": "31169512f436b7da8992530ed1e80d50c788a642",
+			"revisionTime": "2016-10-10T19:09:17Z"
+		},
+		{
+			"checksumSHA1": "OBvAHqWjdI4NQVAqTkcQAdTuCFY=",
+			"path": "github.com/justinas/alice",
+			"revision": "1051eaf52fcafdd87ead59d28b065f1fcb8274ec",
+			"revisionTime": "2016-09-10T10:38:22Z"
+		},
+		{
+			"checksumSHA1": "8fD/im5Kwvy3JgmxulDTambmE8w=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "b518c298ac9dc94b6ac0757394f50d10c5dfa25a",
+			"revisionTime": "2016-07-12T07:09:20Z"
+		}
+	],
+	"rootPath": "github.com/HeavyHorst/alertboard"
+}
