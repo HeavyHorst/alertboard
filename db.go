@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/boltdb/bolt"
@@ -13,6 +15,7 @@ type store interface {
 	putAlert(a alertData) error
 	getAlert(id string) []byte
 	deleteAlert(id string) error
+	backup(w http.ResponseWriter)
 	getAlertsByPrefix(prefix string) ([]byte, error)
 }
 
@@ -58,6 +61,19 @@ func (b *boltStore) putAlert(a alertData) error {
 		return err
 	})
 	return err
+}
+
+func (b *boltStore) backup(w http.ResponseWriter) {
+	err := b.db.View(func(tx *bolt.Tx) error {
+		w.Header().Set("Content-Type", "application/octet-stream")
+		w.Header().Set("Content-Disposition", `attachment; filename="my.db"`)
+		w.Header().Set("Content-Length", strconv.Itoa(int(tx.Size())))
+		_, err := tx.WriteTo(w)
+		return err
+	})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 func (b *boltStore) getAlert(id string) []byte {

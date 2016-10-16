@@ -13,7 +13,7 @@ import (
 
 // some middleware handlers
 func timeoutHandler(h http.Handler) http.Handler {
-	return http.TimeoutHandler(h, 1*time.Second, "timed out")
+	return http.TimeoutHandler(h, 10*time.Second, "timed out")
 }
 
 func loggingHandler(h http.Handler) http.Handler {
@@ -86,5 +86,11 @@ func alertListHandler(db store) func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/json; charset=utf-8")
 			w.Write(data)
 		}
+	}
+}
+
+func boltBackupHandler(db store) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		db.backup(w)
 	}
 }

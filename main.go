@@ -19,6 +19,7 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	chain := alice.New(loggingHandler, timeoutHandler)
 
+	router.HandleFunc("/api/backup", boltBackupHandler(db))
 	router.HandleFunc("/api/alerts", alertListHandler(db))
 	router.HandleFunc("/api/alerts/{prefix}", alertListHandler(db))
 	router.HandleFunc("/api/alert", alertHandler(db))

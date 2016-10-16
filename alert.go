@@ -14,6 +14,5 @@ type alertData struct {
 	Duration time.Duration   `json:"duration"`
 	Level    string          `json:"level"`
 	Data     influxql.Result `json:"data"`
-	Assignee string          `json:"assignee"`
 	Status   string          `json:"status"`
 }
