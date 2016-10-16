@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alertboard</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900' rel='stylesheet'
+          type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue_grey-deep_orange.min.css" />
+    <link rel="stylesheet" href="css/application.css">
+    
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout is-small-screen">
+    <main class="mdl-layout__content">
+        <div class="mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-grid mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+                <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone ">
+                    <div id="alert-placeholder">
+                    </div>
+
+                  <script id="alert-template" type="text/x-handlebars-template">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp projects-table" id="alert-table">
+                        <thead>
+                        <tr>
+                       		<th class="mdl-data-table__cell--non-numeric">Severity</th>
+                            <th class="mdl-data-table__cell--non-numeric">ID</th>
+                            <th class="mdl-data-table__cell--non-numeric">Status</th>
+                            <th class="mdl-data-table__cell--non-numeric">Time</th>
+                            <th class="mdl-data-table__cell--non-numeric">Message</th>
+                            <th class="mdl-data-table__cell--non-numeric"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#alerts}}
+                        <tr>
+                        	<td class="mdl-data-table__cell--non-numeric">{{level}}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{id}}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{status}}</td>
+							              <td class="mdl-data-table__cell--non-numeric">{{time}}</td>
+							              <td class="mdl-data-table__cell--non-numeric">{{message}}</td>
+							              <td class="mdl-data-table__cell--non-numeric">
+								              <button class="mdl-button mdl-js-button mdl-button--icon" onclick="deleteAlert(this)">
+  									             <i class="material-icons">delete</i>
+								              </button>
+							              </td>
+                        </tr>
+                        {{/alerts}}
+                        </tbody>
+                    </table>
+                  </script>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+<script src="js/handlebars-v4.0.5.js"></script>
+<script src="js/alerts.js"></script>
+
+</body>
+</html>

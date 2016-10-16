@@ -1,0 +1,74 @@
+header {
+    text-transform: uppercase;
+    height: 64px;
+    line-height: 64px;
+    background: rgba(0,0,0,.85);
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.mdl-layout__drawer header, .mdl-tooltip {
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+}
+.mdl-layout__header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-height: 64px;
+    max-height: 1000px;
+    z-index: 3;
+    background-color: #242424;
+    color: #00bcd4;
+    transition-duration: .2s;
+    transition-property: max-height,box-shadow;
+}
+
+.projects-table {
+    width: 100%;
+}
+
+element.style {
+}
+.mdl-data-table__cell--non-numeric.mdl-data-table__cell--non-numeric {
+    text-align: left;
+}
+.mdl-data-table th {
+    position: relative;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0;
+    height: 48px;
+    font-size: 13px;
+    color: #fff;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+}
+
+.mdl-data-table {
+    background-color: #4e4e4e;
+    border: none;
+    color: #fff;
+    font-weight: 400;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    white-space: normal;
+}
+
+main {
+    background: url(../images/Dark_background_1920x1080.png) center top no-repeat;
+    background-size: cover;
+    margin-right: -18px;
+}
+
+.mdl-cell {
+    margin: 0px;
+}
