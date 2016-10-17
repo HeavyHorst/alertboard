@@ -66,7 +66,7 @@ func (b *boltStore) putAlert(a alertData) error {
 func (b *boltStore) backup(w http.ResponseWriter) {
 	err := b.db.View(func(tx *bolt.Tx) error {
 		w.Header().Set("Content-Type", "application/octet-stream")
-		w.Header().Set("Content-Disposition", `attachment; filename="my.db"`)
+		w.Header().Set("Content-Disposition", `attachment; filename="alertboard.db"`)
 		w.Header().Set("Content-Length", strconv.Itoa(int(tx.Size())))
 		_, err := tx.WriteTo(w)
 		return err
