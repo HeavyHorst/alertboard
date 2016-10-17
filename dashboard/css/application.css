@@ -1,17 +1,11 @@
 header {
     text-transform: uppercase;
     height: 64px;
-    line-height: 64px;
     background: rgba(0,0,0,.85);
     font-size: 25px;
     letter-spacing: 1px;
 }
 
-.mdl-layout__drawer header, .mdl-tooltip {
-    color: #fff;
-    font-weight: 500;
-    text-align: center;
-}
 .mdl-layout__header {
     display: flex;
     flex-direction: column;
@@ -35,8 +29,6 @@ header {
     width: 100%;
 }
 
-element.style {
-}
 .mdl-data-table__cell--non-numeric.mdl-data-table__cell--non-numeric {
     text-align: left;
 }
@@ -58,14 +50,17 @@ element.style {
     background-color: #4e4e4e;
     border: none;
     color: #fff;
-    font-weight: 400;
+    font-weight: 600;
     font-family: Roboto,Helvetica,Arial,sans-serif;
     white-space: normal;
 }
 
-main {
+body {
     background: url(../images/Dark_background_1920x1080.png) center top no-repeat;
     background-size: cover;
+}
+
+main {
     margin-right: -18px;
 }
 

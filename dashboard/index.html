@@ -14,7 +14,22 @@
     
 </head>
 <body>
-<div class="mdl-layout mdl-js-layout is-small-screen">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Alertboard</span>
+        <div class="mdl-layout-spacer"></div>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/api/backup"> <i class="material-icons">get_app</i> Backup</a>
+        </nav>
+      </div>
+    </header>
+
     <main class="mdl-layout__content">
         <div class="mdl-grid mdl-grid--no-spacing">
             <div class="mdl-grid mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
@@ -26,7 +41,7 @@
                     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp projects-table" id="alert-table">
                         <thead>
                         <tr>
-                       		<th class="mdl-data-table__cell--non-numeric">Severity</th>
+                       		  <th class="mdl-data-table__cell--non-numeric">Severity</th>
                             <th class="mdl-data-table__cell--non-numeric">ID</th>
                             <th class="mdl-data-table__cell--non-numeric">Status</th>
                             <th class="mdl-data-table__cell--non-numeric">Time</th>
@@ -37,10 +52,10 @@
                         <tbody>
                         {{#alerts}}
                         <tr>
-                        	<td class="mdl-data-table__cell--non-numeric">{{level}}</td>
+                        	  <td class="mdl-data-table__cell--non-numeric">{{level}}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{id}}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{status}}</td>
-							              <td class="mdl-data-table__cell--non-numeric">{{time}}</td>
+							              <td class="mdl-data-table__cell--non-numeric">{{formatDate time}}</td>
 							              <td class="mdl-data-table__cell--non-numeric">{{message}}</td>
 							              <td class="mdl-data-table__cell--non-numeric">
 								              <button class="mdl-button mdl-js-button mdl-button--icon" onclick="deleteAlert(this)">
@@ -59,6 +74,7 @@
 </div>
 
 <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+<script src="js/moment-with-locales.min.js"></script>
 <script src="js/handlebars-v4.0.5.js"></script>
 <script src="js/alerts.js"></script>
 

@@ -8,6 +8,16 @@ var levelMap = {
 	"CRITICAL": 3,
 }
 
+moment.locale("DE");
+Handlebars.registerHelper("formatDate", function(datetime) {
+  if (moment) {
+    return moment(datetime).format('LLL');
+  }
+  else {
+    return datetime;
+  }
+});
+
 function alertSorter(a, b) {
 	if (levelMap[a["level"]] < levelMap[b["level"]]) return 1;
 	if (levelMap[a["level"]] > levelMap[b["level"]]) return -1;
@@ -23,11 +33,6 @@ var loadAlerts = function() {
 			var source = document.getElementById("alert-template").innerHTML;
 			var template = Handlebars.compile(source);
 			var elements = JSON.parse(request.responseText);
-
-			for (var i = 0; i < elements.length; i++) {
-				var d = new Date(Date.parse(elements[i].time));
-				elements[i].time = d;
-			}
 			elements.sort(alertSorter);
 
 			var data = {
@@ -38,6 +43,7 @@ var loadAlerts = function() {
 
 			// color the rows based on the error level
 			var alert_tr = document.querySelectorAll("#alert-placeholder > table > tbody > tr");
+			var v = ""
 			for (var i = 0; i < alert_tr.length; i++) {
 				var c = alert_tr[i].cells[0];
 				switch (c.innerHTML) {
