@@ -44,6 +44,7 @@ header {
     color: #fff;
     padding-bottom: 8px;
     box-sizing: border-box;
+    background-color: rgba(0,0,0,.3);
 }
 
 .mdl-data-table {
@@ -56,8 +57,7 @@ header {
 }
 
 body {
-    background: url(../images/Dark_background_1920x1080.png) center top no-repeat;
-    background-size: cover;
+background-color: #575757;
 }
 
 main {
