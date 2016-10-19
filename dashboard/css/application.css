@@ -51,13 +51,13 @@ header {
     background-color: #4e4e4e;
     border: none;
     color: #fff;
-    font-weight: 600;
+    font-weight: 400;
     font-family: Roboto,Helvetica,Arial,sans-serif;
     white-space: normal;
 }
 
 body {
-background-color: #575757;
+    background-color: #575757;
 }
 
 main {
