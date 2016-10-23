@@ -29,30 +29,57 @@ A sample alert would look like:
 
 ###API-Endpoints
 
-GET ==> /api/alerts
+## Routes
 
- - get a list of all alerts
+<details>
+<summary>`/alert`</summary>
 
-GET ==> /api/alerts/{prefix}
+- **/alert**
+	- **/**
+		- _POST_
+			- [create a new alert]
 
-- get a list of all alerts with prefix `prefix`
+</details>
+<details>
+<summary>`/alert/:alertID`</summary>
 
+- **/alert**
+	- **/:alertID**
+		- [main.alertCtx]()
+		- **/**
+			- _DELETE_
+				- [delete the alert with the id `alertID`]
+			- _GET_
+				- [get the alert with the id `alertID`]
 
-GET ⇒ /api/alert/{alert_id}
+</details>
+<details>
+<summary>`/alerts`</summary>
 
-- get the alert with the id `alert_id`
+- **/alerts**
+	- **/**
+		- _GET_
+			- [get a list of all alerts]
 
-DELETE ⇒ /api/alert/{alert_id}
+</details>
+<details>
+<summary>`/alerts/:prefix`</summary>
 
- - delete the alert with the id `alert_id`
+- **/alerts**
+	- **/:prefix**
+		- _GET_
+			- [get a list of all alerts with prefix `prefix`]
 
-GET ⇒ /api/backup
+</details>
+<details>
+<summary>`/backup`</summary>
 
-- get a database backup
+- **/backup**
+	- **/**
+		- _GET_
+			- [get a database backup]
 
-POST ⇒ /api/alert
-
-- create a new alert
+</details>
 
 ###Example:
 Create alert:
