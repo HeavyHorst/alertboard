@@ -16,7 +16,7 @@ type store interface {
 	getAlert(id string) []byte
 	deleteAlert(id string) error
 	backup(w http.ResponseWriter)
-	getAlertsByPrefix(prefix string) ([]byte, error)
+	getAlertsByPrefix(prefix string) ([]byte, int, error)
 }
 
 type boltStore struct {
@@ -95,7 +95,7 @@ func (b *boltStore) deleteAlert(id string) error {
 	return err
 }
 
-func (b *boltStore) getAlertsByPrefix(prefix string) ([]byte, error) {
+func (b *boltStore) getAlertsByPrefix(prefix string) ([]byte, int, error) {
 	alerts := make([]alertData, 0, 0)
 	var alert alertData
 
@@ -114,7 +114,7 @@ func (b *boltStore) getAlertsByPrefix(prefix string) ([]byte, error) {
 	})
 
 	data, _ := json.Marshal(alerts)
-	return data, err
+	return data, len(alerts), err
 }
 
 func (b *boltStore) Close() {

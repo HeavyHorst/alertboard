@@ -3,9 +3,12 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
+	"time"
 
-	"github.com/gorilla/mux"
-	"github.com/justinas/alice"
+	"github.com/pressly/chi"
+	"github.com/pressly/chi/middleware"
+	"github.com/rs/xlog"
 )
 
 func main() {
@@ -16,15 +19,40 @@ func main() {
 	}
 	defer db.Close()
 
-	router := mux.NewRouter().StrictSlash(true)
-	chain := alice.New(loggingHandler, timeoutHandler)
+	host, _ := os.Hostname()
+	r := chi.NewRouter()
 
-	router.HandleFunc("/api/backup", boltBackupHandler(db))
-	router.HandleFunc("/api/alerts", alertListHandler(db))
-	router.HandleFunc("/api/alerts/{prefix}", alertListHandler(db))
-	router.HandleFunc("/api/alert", alertHandler(db))
-	router.HandleFunc("/api/alert/{alertID}", alertHandler(db))
-	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./dashboard/")))
+	r.Use(xlog.NewHandler(xlog.Config{
+		Output: xlog.NewOutputChannel(xlog.NewConsoleOutput()),
+		Fields: xlog.F{"hostname": host},
+	}))
+	r.Use(xlog.MethodHandler("method"))
+	r.Use(xlog.URLHandler("url"))
+	r.Use(xlog.RemoteAddrHandler("ip"))
+	r.Use(xlog.RequestIDHandler("req_id", "Request-Id"))
+	r.Use(logHandler)
+	r.Use(middleware.Recoverer)
+	r.Use(middleware.Timeout(5 * time.Second))
 
-	log.Fatal(http.ListenAndServe(":8080", chain.Then(router)))
+	r.Route("/api", func(r chi.Router) {
+		r.Route("/alert", func(r chi.Router) {
+			r.Post("/", postAlert(db))
+			r.Route("/:alertID", func(r chi.Router) {
+				r.Use(alertCtx)
+				r.Get("/", getAlert(db))
+				r.Delete("/", deleteAlert(db))
+			})
+		})
+		r.Route("/alerts", func(r chi.Router) {
+			r.Get("/", listAlerts(db))
+			r.Get("/:prefix", listAlerts(db))
+		})
+		r.Route("/backup", func(r chi.Router) {
+			r.Get("/", boltBackupHandler(db))
+		})
+	})
+
+	r.FileServer("/", http.Dir("./dashboard/"))
+
+	log.Fatal(http.ListenAndServe(":8080", r))
 }

@@ -27,7 +27,7 @@ function alertSorter(a, b) {
 
 var loadAlerts = function() {
 	var request = new XMLHttpRequest();
-	request.open("GET", "/api/alerts/" + prefix, true);
+	request.open("GET", "/api/alerts" + prefix, true);
 	request.onload = function() {
 		if (request.responseText !== prevData) {
 			var source = document.getElementById("alert-template").innerHTML;
