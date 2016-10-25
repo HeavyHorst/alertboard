@@ -7,6 +7,8 @@ It provides a simple RESTful-API to write and read alerts to/from the system.
 
 It's compatiple with [kapacitor](https://github.com/influxdata/kapacitor "kapacitor").
 
+![alertboard](/docs/images/alertboard.png?raw=true)
+
 ##API
 Alertboard has a simple json-RESTful API.
 A sample alert would look like:
