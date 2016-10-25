@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 	"os"
@@ -11,7 +12,17 @@ import (
 	"github.com/rs/xlog"
 )
 
+var (
+	port string
+)
+
+func init() {
+	const defaultPort = "8080"
+	flag.StringVar(&port, "p", defaultPort, "the port to listen on")
+}
+
 func main() {
+	flag.Parse()
 	var err error
 	db, err := newBoltStore()
 	if err != nil {
@@ -54,5 +65,5 @@ func main() {
 
 	r.FileServer("/", http.Dir("./dashboard/"))
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":"+port, r))
 }
