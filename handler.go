@@ -13,6 +13,14 @@ import (
 	"github.com/rs/xlog"
 )
 
+func errorsFromContext(ctx context.Context) string {
+	e, ok := ctx.Value("error").(string)
+	if ok {
+		return e
+	}
+	return ""
+}
+
 func logHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		rec := httptest.NewRecorder()
@@ -26,11 +34,13 @@ func logHandler(next http.Handler) http.Handler {
 		w.WriteHeader(rec.Code)
 		w.Write(rec.Body.Bytes())
 
+		ctx := r.Context()
 		t2 := time.Now()
 		l.Info(xlog.F{
 			"duration": t2.Sub(t1),
 			"status":   rec.Code,
 			"size":     rec.Body.Len(),
+			"error":    errorsFromContext(ctx),
 		})
 	})
 }
@@ -75,7 +85,7 @@ func deleteAlert(db store) func(w http.ResponseWriter, r *http.Request) {
 		err := db.deleteAlert(string(alertID))
 		l := xlog.FromRequest(r)
 		if err != nil {
-			l.Errorf("Wasn't able to delete %s: %s", alertID, err.Error())
+			l.SetField("error", fmt.Sprintf("Wasn't able to delete %s: %s", alertID, err.Error()))
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		} else {
 			l.SetField("message", "Successfully deleted alert: "+alertID)
@@ -93,13 +103,13 @@ func postAlert(db store) func(w http.ResponseWriter, r *http.Request) {
 		err := decoder.Decode(&alert)
 		l := xlog.FromRequest(r)
 		if err != nil {
-			l.Error("Wasn't able to decode the message body: " + err.Error())
+			l.SetField("error", "Wasn't able to decode the message body: "+err.Error())
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 		err = db.putAlert(alert)
 		if err != nil {
-			l.Error("Wasn't able to save the alert: " + err.Error())
+			l.SetField("error", "Wasn't able to save the alert: "+err.Error())
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
@@ -118,7 +128,7 @@ func listAlerts(db store) func(w http.ResponseWriter, r *http.Request) {
 		data, num, err := db.getAlertsByPrefix(prefix)
 		l := xlog.FromRequest(r)
 		if err != nil {
-			l.Error("Wasn't able to get alerts: " + err.Error())
+			l.SetField("error", "Wasn't able to get alerts: "+err.Error())
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		} else {
 			l.SetField("message", fmt.Sprintf("Successfully returned %d alerts", num))
