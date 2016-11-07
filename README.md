@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/HeavyHorst/alertboard.svg?branch=master)](https://travis-ci.org/HeavyHorst/alertboard) [![Go Report Card](https://goreportcard.com/badge/github.com/HeavyHorst/alertboard)](https://goreportcard.com/report/github.com/HeavyHorst/alertboard) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HeavyHorst/alertboard/master/LICENCE)
 #alertboard
 
-Alertboard is a very simple Alert-Dashboard with zero dependencies.
+Alertboard is a very simple Alert-Dashboard with no external dependencies.
 
 It provides a simple RESTful-API to write and read alerts to/from the system.
 
