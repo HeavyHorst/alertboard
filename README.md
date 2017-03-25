@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/HeavyHorst/alertboard.svg?branch=master)](https://travis-ci.org/HeavyHorst/alertboard) [![Go Report Card](https://goreportcard.com/badge/github.com/HeavyHorst/alertboard)](https://goreportcard.com/report/github.com/HeavyHorst/alertboard) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HeavyHorst/alertboard/master/LICENCE)
-#alertboard
+
+# alertboard
 
 Alertboard is a very simple Alert-Dashboard with no external dependencies.
 
@@ -9,7 +10,7 @@ It's compatiple with [kapacitor](https://github.com/influxdata/kapacitor "kapaci
 
 ![alertboard](/docs/images/alertboard.png?raw=true)
 
-##API
+## API
 Alertboard has a simple json-RESTful API.
 A sample alert would look like:
 ```json
@@ -29,7 +30,7 @@ A sample alert would look like:
 }
 ```
 
-###API-Endpoints
+### API-Endpoints
 
 ## Routes
 
@@ -83,7 +84,7 @@ A sample alert would look like:
 
 </details>
 
-###Example:
+### Example:
 Create alert:
 ```
 curl -v -H "Content-Type: application/json" -X POST -d '{"id":"abc123!?$*&()-=@~","message":"hallo", "level":"OK"}' http://localhost:8080/api/alert
